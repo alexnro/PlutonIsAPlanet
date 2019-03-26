@@ -1,5 +1,7 @@
 package org.lasencinas;
 
+import java.util.EnumSet;
+
 public enum Planeta {
 
     MERCURY (3.303e+23, 2.4397e6),
@@ -48,7 +50,14 @@ public enum Planeta {
     }
 
     public double masaHumano(double pesoHumano) {
-        //tu_masa = tu_peso_en_la_Tierra / gravedad_superficial_tierra;
-        return pesoHumano / gravedadPlaneta();
+        return pesoHumano / EARTH.gravedadPlaneta();
+    }
+
+    public static EnumSet<Planeta> getPlanetasTerrestres() {
+        return EnumSet.range(MERCURY, MARS);
+    }
+
+    public static EnumSet<Planeta> getGigantesGaseosos() {
+        return EnumSet.complementOf(getPlanetasTerrestres());
     }
 }
